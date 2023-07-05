@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="page">
+        <form method="POST" class="formLogin">
+            <h1>Login</h1>
+            <p>Digite os seus dados de acesso no campo abaixo.</p>
+            <label for="email">login</label>
+            <input type="text" placeholder="Digite seu login" autofocus="true" id="login" />
+            <label for="password">Senha</label>
+            <input type="password" placeholder="Digite a sua senha" id="senha" />
+            
+
+            <a href="esquecerEmail.html">Esqueci minha senha</a>
+            <a href="cadastro.html">Cadastrar</a>
+            <input type="submit" value="Acessar" class="btn" onclick="logar(); return false"/>
+            <a href="pginicial.html"></a>
+            
+        </form>
+    </div>
+    <script>
+        function logar() {
+            var login = document.getElementById("login").value; 
+            var senha = document.getElementById("senha").value;
+            var cadastros = JSON.parse(localStorage.getItem('cadastros')) || [];
+            var encontrado = false;
+    
+            for (var i = 0; i < cadastros.length; i++) {
+                var usuario = cadastros[i];
+                if (usuario.login === login && usuario.senha === senha) {
+                    encontrado = true;
+                    break;
+                }
+            }
+    
+            if (encontrado) {
+                location.href = "pginicial.html";
+            } else {
+                alert("E-mail ou senha incorretos");
+            }
+        }
+    </script>
+    
+</body>
+</html>
+<link rel

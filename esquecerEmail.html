@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esquecer a senha</title>
+    <link rel="stylesheet" href="esquecerEmail.css">
+    <script>
+        function enviarEmail(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Realizar validações dos campos do formulário
+            var email = document.getElementById('email').value;
+
+            if (email) {
+                if (!isValidEmail(email)) {
+                    alert('Digite um email válido.');
+                    return;
+                }
+
+                // Restante do código para enviar o email de recuperação de senha...
+                // ...
+                
+                // Exemplo de alerta para simular o envio do email
+                alert('Um email de recuperação foi enviado para o endereço fornecido.');
+            } else {
+                alert('Digite o seu email para recuperar a senha.');
+            }
+        }
+
+        function isValidEmail(email) {
+            // Verificar se o email possui um formato válido usando uma expressão regular
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+
+        function handleKeyPress(event) {
+            if (event.keyCode === 13) { // Verifica se a tecla pressionada é Enter
+                event.preventDefault(); // Impede o envio padrão do formulário
+                enviarEmail(event); // Chama a função enviarEmail
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="page">
+        <form class="formEsquecerSenha">
+            <h1>Esqueci a senha</h1>
+            <p>Digite o seu email para recuperar a senha</p>
+            <label for="email">Email</label>
+            <input type="text" placeholder="Digite o seu email" id="email" onkeypress="handleKeyPress(event)" />
+            <div class="btn-container">
+                <button class="btn1 btn-voltar" onclick="window.location.href = 'main.html'" type="button">Voltar</button>
+                <input type="submit" value="Enviar Email" class="btn btn-enviar" onclick="enviarEmail(event)" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
